@@ -2,11 +2,26 @@ Welcome to {{ grains['id'] }}!
 
 Managed By
 
-   _____       ____  _____ __             __  
-  / ___/____ _/ / /_/ ___// /_____ ______/ /__
-  \__ \/ __ `/ / __/\__ \/ __/ __ `/ ___/ //_/
- ___/ / /_/ / / /_ ___/ / /_/ /_/ / /__/ ,<   
-/____/\__,_/_/\__//____/\__/\__,_/\___/_/|_|  
+           _          _                     
+          | |        | |                    
+        __| |_      _| |__  _ __            
+       / _` \ \ /\ / / '_ \| '_ \           
+      | (_| |\ V  V /| |_) | | | |          
+       \__,_| \_/\_/ |_.__/|_| |_|          
+                                                
+Servers is managed by Salt.
+Make changes in the dev-devops-dwbn repo only!
+http://gitlab.dwbn.org
 
+Cheers, your dev-devops-dwbn admin.
 
-Make sure changes get pushed into the state repo!
+{{ grains['fqdn'] }}
+machine-id: {{ grains['machine_id'] }}
+{% if grains['virtual'] == 'VirtualBox' %}
+ip address: {{ salt['grains.get']('ipv4')[2] }}
+ {% elif grains['virtual'] != 'VirtualBox' %}
+ip address: {{ salt['grains.get']('ipv4')[1] }}
+{% endif %}
+
+{{ grains['lsb_distrib_description'] }} on {{ grains['virtual'] }}
+
