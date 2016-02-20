@@ -17,11 +17,5 @@ Cheers, your dev-devops-dwbn admin.
 
 {{ grains['fqdn'] }}
 machine-id: {{ grains['machine_id'] }}
-{% if grains['virtual'] == 'VirtualBox' %}
-ip address: {{ salt['grains.get']('ipv4')[2] }}
- {% elif grains['virtual'] != 'VirtualBox' %}
-ip address: {{ salt['grains.get']('ipv4')[1] }}
-{% endif %}
-
 {{ grains['lsb_distrib_description'] }} on {{ grains['virtual'] }}
 
