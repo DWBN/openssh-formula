@@ -1,7 +1,5 @@
 Welcome to {{ grains['id'] }}!
-
 Managed By
-
            _          _                     
           | |        | |                    
         __| |_      _| |__  _ __            
@@ -12,10 +10,14 @@ Managed By
 Servers is managed by Salt.
 Make changes in the dev-devops-dwbn repo only!
 http://gitlab.dwbn.org
-
 Cheers, your dev-devops-dwbn admin.
 
-{{ grains['fqdn'] }}
+host: {{ grains['fqdn'] }}
 machine-id: {{ grains['machine_id'] }}
 {{ grains['lsb_distrib_description'] }} on {{ grains['virtual'] }}
+{% if grains['virtual'] == 'VirtualBox' %}
+ip address: {{ salt['grains.get']('ipv4')[2] }}
+ {% elif grains['virtual'] != 'VirtualBox' %}
+ip address: {{ salt['grains.get']('ipv4')[1] }}
+{% endif %}
 
