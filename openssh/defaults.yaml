@@ -27,7 +27,6 @@ ssh_config:
       IdentityFile: "~/.ssh/id_rsa"
       Port: 22
       Protocol: 2
-      Cipher: 3des
       Tunnel: no
       TunnelDevice: "any:any"
       PermitLocalCommand: no
